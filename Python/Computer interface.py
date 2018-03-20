@@ -1,22 +1,35 @@
+import sys
+import time
 import serial
 #http://pyserial.readthedocs.io/en/latest/shortintro.html
 
-#ser = serial.Serial('COM3')   #('/dev/ttyUSB0')  # open serial port
-#print(ser.name)         # check which port was really used
-#ser.write(b'hello')     # write a string
-#ser.close()             # close port
 
-
-ser = serial.Serial('COM3', 9600)   #('/dev/ttyUSB0')  # open serial port
+ser = serial.Serial('COM7', 9600, timeout=2)   #('/dev/ttyUSB0') ('/dev/ttyS1')  # open serial port
 print(ser.name)         # check which port was really used
 
 def Send(serial_send):
-    #ser.open()             # close port
+    print('Send')
     ser.write(serial_send)     # write a string
-    #ser.close()             # close port
-    line = ser.readline()   # read a '\n' terminated line
+
+
+def Read():
+    print('Read')
+    line = ser.readline()
     print(line)
+    
+
+def Loop(serial_send): #send something the read something
+    for num in range(1,10):
+        sendappend = serial_send + str(num)
+        Send(sendappend)
+        Read()
+        time.sleep(1)
+
+def End():
+    print('End')
+    ser.close()
+    sys.exit()
 
 if __name__ == "__main__":
-    SendSer('Hello')
+    Send('Hello')
     
