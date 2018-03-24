@@ -4,7 +4,7 @@ import serial
 #http://pyserial.readthedocs.io/en/latest/shortintro.html
 
 
-ser = serial.Serial('COM7', 9600, timeout=2)   #('/dev/ttyUSB0') ('/dev/ttyS1')  # open serial port
+ser = serial.Serial('COM8', 9600, timeout=2)   #('/dev/ttyUSB0') ('/dev/ttyS1')  # open serial port
 print(ser.name)         # check which port was really used
 
 def Send(serial_send):
@@ -16,7 +16,7 @@ def Read():
     print('Read')
     line = ser.readline()
     print(line)
-    
+
 
 def Loop(serial_send): #send something the read something
     for num in range(1,10):
